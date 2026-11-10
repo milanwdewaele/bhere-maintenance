@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#11151c" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title id="metaTitle">Maintenance &bull; b/here</title>
+  <meta id="metaDesc" name="description" content="b/here is temporarily undergoing maintenance." />
+  <script>
+    if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+      window.location.replace('/' + window.location.search);
+    }
+  </script>
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <style>
+    :root {
+      --bg: #11151c;
+      --card-bg: #1a202c;
+      --card-border: #2d3748;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --primary: #14B5E4;
+      --primary-hover: #0ea5cf;
+      --accent-slash: #e00020;
+      --radius: 4px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: env(safe-area-inset-top, 24px) 20px env(safe-area-inset-bottom, 24px);
+      line-height: 1.5;
+    }
+
+    /* VDS Dual Brand Accent Stripe */
+    .brand-stripe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #14B5E4 0%, #14B5E4 70%, #e00020 70%, #e00020 100%);
+      z-index: 100;
+    }
+
+    .card {
+      max-width: 480px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .brand-fallback {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .brand-fallback .cyan { color: var(--primary); }
+    .brand-fallback .slash { color: var(--accent-slash); margin: 0 1px; }
+    .brand-fallback .white { color: #ffffff; }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: var(--text-main);
+    }
+
+    p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      max-width: 400px;
+    }
+
+    .reload-btn {
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #0c1017;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .reload-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    .reload-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Minimalist language links */
+    .lang-links {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .lang-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.15s ease;
+      text-transform: uppercase;
+      padding: 2px 4px;
+    }
+
+    .lang-links a:hover {
+      color: var(--text-main);
+    }
+
+    .lang-links a.active {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .dot-sep {
+      color: var(--card-border);
+      font-size: 0.6rem;
+    }
+
+    .spinning {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="brand-stripe"></div>
+
+  <div class="card">
+    <div class="brand">
+      <img
+        src="/assets/logo/bhr-logo-white.svg"
+        alt="b/here"
+        class="brand-logo-img"
+        onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='inline-flex';"
+      />
+      <span id="brandFallback" class="brand-fallback" style="display: none;">
+        <span class="cyan">b</span><span class="slash">/</span><span class="white">here</span>
+      </span>
+    </div>
+
+    <h1 id="title">Even geduld, we zijn bezig met onderhoud</h1>
+    <p id="desc">We voeren momenteel een geplande systeemupgrade uit om b/here sneller en stabieler te maken. We zijn snel weer online.</p>
+
+    <button class="reload-btn" onclick="reloadPage()" id="reloadBtn">
+      <svg id="reloadIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+      </svg>
+      <span id="reloadText">Opnieuw proberen</span>
+    </button>
+  </div>
+
+  <nav class="lang-links" aria-label="Languages">
+    <a href="#" onclick="setLanguage('nl'); return false;" data-lang="nl">NL</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('en'); return false;" data-lang="en">EN</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('fr'); return false;" data-lang="fr">FR</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('es'); return false;" data-lang="es">ES</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('ja'); return false;" data-lang="ja">JA</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('ru'); return false;" data-lang="ru">RU</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('zh'); return false;" data-lang="zh">ZH</a>
+  </nav>
+
+  <script>
+    const translations = {
+      nl: {
+        pageTitle: "Onderhoud • b/here",
+        metaDesc: "b/here is tijdelijk in onderhoud wegens een systeemupgrade.",
+        title: "Even geduld, we zijn bezig met onderhoud",
+        desc: "We voeren momenteel een geplande systeemupgrade uit om b/here sneller en beter te maken. We zijn snel weer online.",
+        reload: "Opnieuw proberen"
+      },
+      en: {
+        pageTitle: "Maintenance • b/here",
+        metaDesc: "b/here is temporarily undergoing maintenance.",
+        title: "We'll be back soon",
+        desc: "We are currently performing scheduled maintenance to improve b/here. The platform will be back online shortly.",
+        reload: "Try again"
+      },
+      fr: {
+        pageTitle: "Maintenance • b/here",
+        metaDesc: "b/here est temporairement en maintenance.",
+        title: "Nous revenons très vite",
+        desc: "Nous effectuons actuellement une maintenance planifiée pour améliorer b/here. La plateforme sera de nouveau accessible sous peu.",
+        reload: "Réessayer"
+      },
+      es: {
+        pageTitle: "Mantenimiento • b/here",
+        metaDesc: "b/here se encuentra temporalmente en mantenimiento.",
+        title: "Volveremos pronto",
+        desc: "Actualmente estamos realizando tareas de mantenimiento programadas para mejorar b/here. Volveremos a estar disponibles muy pronto.",
+        reload: "Reintentar"
+      },
+      ja: {
+        pageTitle: "メンテナンス中 • b/here",
+        metaDesc: "b/here は現在メンテナンス中です。",
+        title: "ただいまメンテナンス中です",
+        desc: "現在、b/here のシステムメンテナンスを実施しております。作業終了までしばらくお待ちください。",
+        reload: "再試行"
+      },
+      ru: {
+        pageTitle: "Техобслуживание • b/here",
+        metaDesc: "Платформа b/here временно находится на техобслуживании.",
+        title: "Мы скоро вернемся",
+        desc: "В настоящее время мы проводим плановое техническое обслуживание b/here. Платформа скоро снова будет доступна.",
+        reload: "Повторить"
+      },
+      zh: {
+        pageTitle: "维护中 • b/here",
+        metaDesc: "b/here 正在进行系统维护。",
+        title: "系统维护中，很快回来",
+        desc: "我们正在进行计划内的系统维护与优化，b/here 稍后即可恢复正常访问。",
+        reload: "重新加载"
+      }
+    };
+
+    function detectLanguage() {
+      try {
+        const saved = localStorage.getItem('bhere_lang');
+        if (saved && translations[saved]) return saved;
+      } catch (e) {}
+
+      const navLangs = navigator.languages || [navigator.language || ''];
+      for (let l of navLangs) {
+        if (!l) continue;
+        const code = l.toLowerCase().split('-')[0];
+        if (translations[code]) return code;
+      }
+      return 'en';
+    }
+
+    function setLanguage(lang) {
+      if (!translations[lang]) lang = 'en';
+      try {
+        localStorage.setItem('bhere_lang', lang);
+      } catch (e) {}
+
+      const t = translations[lang];
+      document.documentElement.lang = lang;
+      document.title = t.pageTitle;
+      document.getElementById('metaTitle').textContent = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('desc').textContent = t.desc;
+      document.getElementById('reloadText').textContent = t.reload;
+
+      document.querySelectorAll('.lang-links a').forEach(a => {
+        if (a.getAttribute('data-lang') === lang) {
+          a.classList.add('active');
+        } else {
+          a.classList.remove('active');
+        }
+      });
+    }
+
+    function reloadPage() {
+      const icon = document.getElementById('reloadIcon');
+      if (icon) icon.classList.add('spinning');
+      setTimeout(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('_t', Date.now());
+        window.location.href = url.toString();
+      }, 500);
+    }
+
+    // Auto-reload when browser goes online
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+
+    setLanguage(detectLanguage());
+  </script>
+</body>
+</html>
