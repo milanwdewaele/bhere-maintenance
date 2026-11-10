@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#11151c" />
   <meta name="robots" content="noindex, nofollow" />
   <title id="metaTitle">Maintenance &bull; b/here</title>
-  <meta id="metaDesc" name="description" content="b/here is temporarily undergoing maintenance for a system migration." />
+  <meta id="metaDesc" name="description" content="b/here is temporarily undergoing maintenance." />
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -22,14 +22,7 @@
       --text-dim: #64748b;
       --primary: #14B5E4;
       --primary-hover: #0ea5cf;
-      --primary-glow: rgba(20, 181, 228, 0.15);
       --accent-slash: #e00020;
-      --amber: #f59e0b;
-      --amber-glow: rgba(245, 158, 11, 0.15);
-      --amber-border: rgba(245, 158, 11, 0.35);
-      --red: #ef4444;
-      --green: #10b981;
-      --green-glow: rgba(16, 185, 129, 0.18);
       --radius: 4px;
       --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
@@ -48,11 +41,13 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: env(safe-area-inset-top, 20px) 16px env(safe-area-inset-bottom, 24px);
+      align-items: center;
+      justify-content: center;
+      padding: env(safe-area-inset-top, 24px) 20px env(safe-area-inset-bottom, 24px);
       line-height: 1.5;
     }
 
-    /* VDS Dual Brand Accent Stripe (70% Cyan, 30% Red slash) */
+    /* VDS Dual Brand Accent Stripe */
     .brand-stripe {
       position: fixed;
       top: 0;
@@ -63,240 +58,57 @@
       z-index: 100;
     }
 
-    .container {
-      max-width: 580px;
-      margin: 0 auto;
+    .card {
+      max-width: 480px;
       width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      text-align: center;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 16px;
-      padding-top: 18px;
-      padding-bottom: 36px;
-    }
-
-    /* Header */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 4px 6px;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: inherit;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
 
     .brand-logo-img {
-      height: 28px;
+      height: 36px;
       width: auto;
       display: block;
+      margin-bottom: 8px;
     }
 
     .brand-fallback {
-      font-size: 1.35rem;
+      font-size: 1.6rem;
       font-weight: 900;
       letter-spacing: -0.03em;
       display: inline-flex;
       align-items: center;
+      margin-bottom: 8px;
     }
 
     .brand-fallback .cyan { color: var(--primary); }
     .brand-fallback .slash { color: var(--accent-slash); margin: 0 1px; }
     .brand-fallback .white { color: #ffffff; }
 
-    .header-right {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .maintenance-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--amber-glow);
-      border: 1px solid var(--amber-border);
-      color: #fbbf24;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: var(--radius);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--amber);
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(0.85); }
-    }
-
-    /* Language Switcher Bar */
-    .lang-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      background: rgba(26, 32, 44, 0.6);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 4px;
-      overflow-x: auto;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-muted);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .lang-btn:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .lang-btn.active {
-      color: #0c1017;
-      background: var(--primary);
-      border-color: var(--primary);
-    }
-
-    /* Toast Notification */
-    .toast {
-      display: none;
-      background: var(--green-glow);
-      border: 1px solid rgba(16, 185, 129, 0.5);
-      color: #86efac;
-      padding: 10px 14px;
-      border-radius: var(--radius);
-      font-size: 0.85rem;
-      text-align: center;
-      font-weight: 600;
-      animation: fadeIn 0.25s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Hero Notice */
-    .hero {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 28px 22px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 240px;
-      height: 100px;
-      background: radial-gradient(circle, var(--amber-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--radius);
-      background: var(--amber-glow);
-      border: 1px solid var(--amber-border);
-      color: var(--amber);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .hero h1 {
-      font-size: 1.35rem;
+    h1 {
+      font-size: 1.25rem;
       font-weight: 800;
-      margin-bottom: 8px;
       letter-spacing: -0.015em;
       color: var(--text-main);
     }
 
-    .hero p {
+    p {
       font-size: 0.92rem;
       color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 20px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
+      line-height: 1.55;
+      max-width: 400px;
     }
 
-    /* Live Migration Status Box inside Hero */
-    .status-tile {
-      background: rgba(17, 21, 28, 0.7);
-      border: 1px solid var(--card-border);
-      border-left: 3px solid var(--primary);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    .status-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .status-tag {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--primary);
-    }
-
-    .status-pulse {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .status-note {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    .retry-btn {
+    .reload-btn {
+      margin-top: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -305,21 +117,53 @@
       color: #0c1017;
       font-size: 0.88rem;
       font-weight: 700;
-      padding: 11px 24px;
+      padding: 10px 24px;
       border-radius: var(--radius);
       border: none;
       cursor: pointer;
-      transition: background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
-      width: 100%;
-      max-width: 260px;
+      transition: background 0.15s ease, transform 0.15s ease;
     }
 
-    .retry-btn:hover {
+    .reload-btn:hover {
       background: var(--primary-hover);
     }
 
-    .retry-btn:active {
+    .reload-btn:active {
       transform: scale(0.98);
+    }
+
+    /* Minimalist language links */
+    .lang-links {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .lang-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.15s ease;
+      text-transform: uppercase;
+      padding: 2px 4px;
+    }
+
+    .lang-links a:hover {
+      color: var(--text-main);
+    }
+
+    .lang-links a.active {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .dot-sep {
+      color: var(--card-border);
+      font-size: 0.6rem;
     }
 
     .spinning {
@@ -329,602 +173,121 @@
     @keyframes spin {
       100% { transform: rotate(360deg); }
     }
-
-    /* Section Headings */
-    .section-title {
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-dim);
-      padding: 6px 2px 0;
-    }
-
-    /* Cards */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    /* Coach card */
-    .coach-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .coach-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius);
-      background: #242c3b;
-      border: 1px solid var(--card-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .coach-name {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 2px;
-    }
-
-    .coach-role {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .call-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(20, 181, 228, 0.12);
-      border: 1px solid rgba(20, 181, 228, 0.35);
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 8px 14px;
-      border-radius: var(--radius);
-      transition: all 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .call-btn:hover {
-      background: var(--primary);
-      color: #0c1017;
-    }
-
-    .coach-note {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      border-top: 1px solid var(--card-border);
-      padding-top: 10px;
-      line-height: 1.4;
-    }
-
-    /* Emergency Contacts Grid */
-    .emergency-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    @media (max-width: 460px) {
-      .emergency-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .em-button {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.15s ease, background 0.15s ease;
-    }
-
-    .em-button:hover {
-      border-color: var(--primary);
-      background: #202736;
-    }
-
-    .em-button.danger {
-      border-left: 3px solid var(--red);
-    }
-
-    .em-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .em-number {
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: var(--text-main);
-    }
-
-    /* Residence Info */
-    .info-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .info-row:not(:last-child) {
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .info-icon {
-      color: var(--primary);
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
-    .info-text h3 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 2px;
-    }
-
-    .info-text p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 20px 0 10px;
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .footer-dual-line {
-      height: 2px;
-      width: 60px;
-      margin: 0 auto 6px;
-      background: linear-gradient(90deg, #14B5E4 0%, #14B5E4 70%, #e00020 70%, #e00020 100%);
-      border-radius: 2px;
-    }
   </style>
 </head>
 <body>
-  <!-- VDS Accent Stripe -->
   <div class="brand-stripe"></div>
 
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <div class="brand">
-        <img
-          src="/assets/logo/bhr-logo-white.svg"
-          alt="b/here"
-          class="brand-logo-img"
-          onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='inline-flex';"
-        />
-        <span id="brandFallback" class="brand-fallback" style="display: none;">
-          <span class="cyan">b</span><span class="slash">/</span><span class="white">here</span>
-        </span>
-      </div>
-
-      <div class="header-right">
-        <div class="maintenance-badge">
-          <div class="status-dot"></div>
-          <span id="badgeText">Maintenance Active</span>
-        </div>
-      </div>
-    </header>
-
-    <!-- Language Selector Pills -->
-    <nav class="lang-bar" aria-label="Language selection">
-      <button class="lang-btn" onclick="setLanguage('nl')" data-lang="nl">NL</button>
-      <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">EN</button>
-      <button class="lang-btn" onclick="setLanguage('fr')" data-lang="fr">FR</button>
-      <button class="lang-btn" onclick="setLanguage('es')" data-lang="es">ES</button>
-      <button class="lang-btn" onclick="setLanguage('ja')" data-lang="ja">日本語</button>
-      <button class="lang-btn" onclick="setLanguage('ru')" data-lang="ru">RU</button>
-      <button class="lang-btn" onclick="setLanguage('zh')" data-lang="zh">中文</button>
-    </nav>
-
-    <!-- Auto-reconnection Toast -->
-    <div id="reconnectingToast" class="toast"></div>
-
-    <!-- Hero Card -->
-    <main class="hero">
-      <div class="hero-glow"></div>
-      <div class="hero-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Database / Server Upgrade Icon -->
-          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-        </svg>
-      </div>
-
-      <h1 id="heroTitle">Temporary Maintenance &bull; System Migration</h1>
-      <p id="heroDesc">We are currently performing a scheduled system upgrade and database migration to improve b/here.</p>
-
-      <!-- Live Status Tile -->
-      <div class="status-tile">
-        <div class="status-header">
-          <span class="status-tag" id="statusLabel">Status</span>
-          <div class="status-pulse">
-            <span class="status-dot"></span>
-            <span id="statusValue">Database migration in progress</span>
-          </div>
-        </div>
-        <div class="status-note" id="statusNote">
-          All resident data and preferences remain completely safe. As soon as the migration finishes, b/here will be immediately accessible.
-        </div>
-      </div>
-
-      <button class="retry-btn" onclick="checkStatus()" id="retryButton">
-        <svg id="retryIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-        </svg>
-        <span id="retryText">Check Again</span>
-      </button>
-    </main>
-
-    <!-- Student Coach Contact -->
-    <div class="section-title" id="coachSectionTitle">Student Coach</div>
-    <div class="card">
-      <div class="coach-box">
-        <div class="coach-info">
-          <div class="avatar">JG</div>
-          <div>
-            <div class="coach-name" id="coachName">Jeroen Guns</div>
-            <div class="coach-role" id="coachRole">Residence &amp; Student Coach</div>
-          </div>
-        </div>
-        <a href="tel:+32496945463" class="call-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          <span id="coachCallBtn">Call</span>
-        </a>
-      </div>
-      <div class="coach-note" id="coachNote">
-        For urgent inquiries, facility issues, or immediate on-site assistance.
-      </div>
+  <div class="card">
+    <div class="brand">
+      <img
+        src="/assets/logo/bhr-logo-white.svg"
+        alt="b/here"
+        class="brand-logo-img"
+        onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='inline-flex';"
+      />
+      <span id="brandFallback" class="brand-fallback" style="display: none;">
+        <span class="cyan">b</span><span class="slash">/</span><span class="white">here</span>
+      </span>
     </div>
 
-    <!-- Emergency Contacts Grid -->
-    <div class="section-title" id="emSectionTitle">Emergency Contacts (Direct Call)</div>
-    <div class="emergency-grid">
-      <a href="tel:112" class="em-button danger">
-        <div>
-          <div class="em-label" id="emAmbulance">Ambulance &amp; Fire</div>
-          <div class="em-number">112</div>
-        </div>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
-      </a>
+    <h1 id="title">Even geduld, we zijn bezig met onderhoud</h1>
+    <p id="desc">We voeren momenteel een geplande systeemupgrade uit om b/here sneller en stabieler te maken. We zijn snel weer online.</p>
 
-      <a href="tel:101" class="em-button">
-        <div>
-          <div class="em-label" id="emPolice">Police</div>
-          <div class="em-number">101</div>
-        </div>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-      </a>
-
-      <a href="tel:1733" class="em-button">
-        <div>
-          <div class="em-label" id="emDoctor">Doctor on Duty</div>
-          <div class="em-number">1733</div>
-        </div>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-        </svg>
-      </a>
-
-      <a href="tel:106" class="em-button">
-        <div>
-          <div class="em-label" id="emSupport">Support &amp; Helpline</div>
-          <div class="em-number">106</div>
-        </div>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-      </a>
-    </div>
-
-    <!-- Residence Information -->
-    <div class="section-title" id="resSectionTitle">Residence Information</div>
-    <div class="card">
-      <div class="info-row">
-        <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-          <circle cx="12" cy="10" r="3"></circle>
-        </svg>
-        <div class="info-text">
-          <h3 id="resAddressLabel">Residence Address</h3>
-          <p id="resAddress">Frank van Ackerpromenade 8, 8000 Bruges</p>
-        </div>
-      </div>
-
-      <div class="info-row">
-        <svg class="info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        <div class="info-text">
-          <h3 id="resQuietLabel">Quiet Hours</h3>
-          <p id="resQuiet">Between <strong>22:00 and 08:00</strong> (10 PM – 8 AM), nighttime quiet hours apply. Please respect your fellow residents and neighbors.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-dual-line"></div>
-      <div>&copy; <span id="year"></span> b/here &bull; Student Community Platform</div>
-    </footer>
+    <button class="reload-btn" onclick="reloadPage()" id="reloadBtn">
+      <svg id="reloadIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+      </svg>
+      <span id="reloadText">Opnieuw proberen</span>
+    </button>
   </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <nav class="lang-links" aria-label="Languages">
+    <a href="#" onclick="setLanguage('nl'); return false;" data-lang="nl">NL</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('en'); return false;" data-lang="en">EN</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('fr'); return false;" data-lang="fr">FR</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('es'); return false;" data-lang="es">ES</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('ja'); return false;" data-lang="ja">JA</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('ru'); return false;" data-lang="ru">RU</a>
+    <span class="dot-sep">&bull;</span>
+    <a href="#" onclick="setLanguage('zh'); return false;" data-lang="zh">ZH</a>
+  </nav>
 
+  <script>
     const translations = {
       nl: {
         pageTitle: "Onderhoud • b/here",
-        metaDesc: "b/here is tijdelijk in onderhoud wegens een geplande systeemmigratie.",
-        badge: "Onderhoud Actief",
-        heroTitle: "Tijdelijk Onderhoud & Migratie",
-        heroDesc: "We voeren momenteel een geplande systeemupgrade en databasemigratie uit om b/here sneller, veiliger en stabieler te maken. Tijdens deze werkzaamheden is het platform tijdelijk niet bereikbaar.",
-        statusLabel: "Status",
-        statusValue: "Databasemigratie in uitvoering",
-        statusNote: "Alle gegevens en instellingen zijn veilig bewaard. Zodra de migratie is afgerond, is b/here direct weer online.",
-        checkBtn: "Controleer opnieuw",
-        checking: "Controleren...",
-        coachSectionTitle: "Studentencoach",
-        coachName: "Jeroen Guns",
-        coachRole: "Residentie & Student Coach",
-        coachCallBtn: "Bellen",
-        coachNote: "Voor dringende vragen, facilitaire storingen of directe hulp ter plaatse.",
-        emSectionTitle: "Nooddiensten (Direct Bellen)",
-        emAmbulance: "Ambulance & Brandweer",
-        emPolice: "Politie",
-        emDoctor: "Wachtdokter",
-        emSupport: "Hulplijn Tele-Onthaal",
-        resSectionTitle: "Residentie Informatie",
-        resAddressLabel: "Adres van de Residentie",
-        resAddress: "Frank van Ackerpromenade 8, 8000 Brugge",
-        resQuietLabel: "Stilte-uren",
-        resQuiet: "Tussen <strong>22:00 en 08:00</strong> gelden de nachtelijke stilte-uren. Respecteer je medebewoners en buren.",
-        restoredToast: "Verbinding hersteld! Pagina wordt herladen..."
+        metaDesc: "b/here is tijdelijk in onderhoud wegens een systeemupgrade.",
+        title: "Even geduld, we zijn bezig met onderhoud",
+        desc: "We voeren momenteel een geplande systeemupgrade uit om b/here sneller en beter te maken. We zijn snel weer online.",
+        reload: "Opnieuw proberen"
       },
       en: {
         pageTitle: "Maintenance • b/here",
-        metaDesc: "b/here is temporarily undergoing maintenance for a system migration.",
-        badge: "Maintenance Active",
-        heroTitle: "Temporary Maintenance & Migration",
-        heroDesc: "We are currently performing a scheduled system upgrade and database migration to make b/here faster, safer, and more reliable. The platform is temporarily unavailable during these works.",
-        statusLabel: "Status",
-        statusValue: "Database migration in progress",
-        statusNote: "All resident data and preferences remain completely safe. As soon as the migration finishes, b/here will be immediately accessible.",
-        checkBtn: "Check Again",
-        checking: "Checking...",
-        coachSectionTitle: "Student Coach",
-        coachName: "Jeroen Guns",
-        coachRole: "Residence & Student Coach",
-        coachCallBtn: "Call",
-        coachNote: "For urgent inquiries, facility issues, or immediate on-site assistance.",
-        emSectionTitle: "Emergency Contacts (Direct Call)",
-        emAmbulance: "Ambulance & Fire",
-        emPolice: "Police",
-        emDoctor: "Doctor on Duty",
-        emSupport: "Support & Helpline",
-        resSectionTitle: "Residence Information",
-        resAddressLabel: "Residence Address",
-        resAddress: "Frank van Ackerpromenade 8, 8000 Bruges",
-        resQuietLabel: "Quiet Hours",
-        resQuiet: "Between <strong>22:00 and 08:00</strong> (10 PM – 8 AM), nighttime quiet hours apply. Please respect your fellow residents and neighbors.",
-        restoredToast: "System back online! Reloading page..."
+        metaDesc: "b/here is temporarily undergoing maintenance.",
+        title: "We'll be back soon",
+        desc: "We are currently performing scheduled maintenance to improve b/here. The platform will be back online shortly.",
+        reload: "Try again"
       },
       fr: {
         pageTitle: "Maintenance • b/here",
-        metaDesc: "b/here est temporairement indisponible en raison d'une maintenance système.",
-        badge: "Maintenance Active",
-        heroTitle: "Maintenance Temporaire & Migration",
-        heroDesc: "Nous effectuons actuellement une mise à niveau planifiée du système et une migration de la base de données pour améliorer b/here. La plateforme est temporairement indisponible.",
-        statusLabel: "Statut",
-        statusValue: "Migration de la base de données en cours",
-        statusNote: "Toutes vos données et préférences sont conservées en toute sécurité. Dès la fin de la migration, b/here sera immédiatement accessible.",
-        checkBtn: "Vérifier à nouveau",
-        checking: "Vérification...",
-        coachSectionTitle: "Coach Étudiant",
-        coachName: "Jeroen Guns",
-        coachRole: "Coach Résidence & Étudiants",
-        coachCallBtn: "Appeler",
-        coachNote: "Pour les urgences, problèmes d'installations ou assistance immédiate sur place.",
-        emSectionTitle: "Numéros d'Urgence (Appel Direct)",
-        emAmbulance: "Ambulance & Pompiers",
-        emPolice: "Police",
-        emDoctor: "Médecin de Garde",
-        emSupport: "Ligne d'Écoute & Soutien",
-        resSectionTitle: "Informations sur la Résidence",
-        resAddressLabel: "Adresse de la Résidence",
-        resAddress: "Frank van Ackerpromenade 8, 8000 Bruges",
-        resQuietLabel: "Heures de Silence",
-        resQuiet: "Entre <strong>22h00 et 08h00</strong>, les heures de calme nocturne s'appliquent. Merci de respecter vos voisins.",
-        restoredToast: "Connexion rétablie ! Rechargement de la page..."
+        metaDesc: "b/here est temporairement en maintenance.",
+        title: "Nous revenons très vite",
+        desc: "Nous effectuons actuellement une maintenance planifiée pour améliorer b/here. La plateforme sera de nouveau accessible sous peu.",
+        reload: "Réessayer"
       },
       es: {
         pageTitle: "Mantenimiento • b/here",
-        metaDesc: "b/here se encuentra temporalmente en mantenimiento por migración de sistema.",
-        badge: "Mantenimiento Activo",
-        heroTitle: "Mantenimiento Temporal y Migración",
-        heroDesc: "Actualmente estamos realizando una actualización programada del sistema y migración de base de datos para que b/here sea más rápido y seguro. El portal no está disponible temporalmente.",
-        statusLabel: "Estado",
-        statusValue: "Migración de base de datos en curso",
-        statusNote: "Todos los datos y preferencias permanecen seguros. Tan pronto termine la migración, b/here volverá a estar disponible de inmediato.",
-        checkBtn: "Comprobar de nuevo",
-        checking: "Comprobando...",
-        coachSectionTitle: "Coach de Estudiantes",
-        coachName: "Jeroen Guns",
-        coachRole: "Coach de Residencia y Estudiantes",
-        coachCallBtn: "Llamar",
-        coachNote: "Para urgencias, incidencias de instalaciones o asistencia inmediata en el edificio.",
-        emSectionTitle: "Contactos de Emergencia (Llamada Directa)",
-        emAmbulance: "Ambulancia y Bomberos",
-        emPolice: "Policía",
-        emDoctor: "Médico de Guardia",
-        emSupport: "Línea de Apoyo y Ayuda",
-        resSectionTitle: "Información de la Residencia",
-        resAddressLabel: "Dirección de la Residencia",
-        resAddress: "Frank van Ackerpromenade 8, 8000 Brujas",
-        resQuietLabel: "Horas de Silencio",
-        resQuiet: "Entre las <strong>22:00 y las 08:00</strong> rigen las horas de silencio nocturno. Por favor, respeta a tus compañeros y vecinos.",
-        restoredToast: "¡Conexión restaurada! Recargando la página..."
+        metaDesc: "b/here se encuentra temporalmente en mantenimiento.",
+        title: "Volveremos pronto",
+        desc: "Actualmente estamos realizando tareas de mantenimiento programadas para mejorar b/here. Volveremos a estar disponibles muy pronto.",
+        reload: "Reintentar"
       },
       ja: {
         pageTitle: "メンテナンス中 • b/here",
-        metaDesc: "b/here はシステム移行作業のため現在メンテナンス中です。",
-        badge: "メンテナンス中",
-        heroTitle: "定期メンテナンスとシステム移行",
-        heroDesc: "現在、b/here をより高速で安全にご利用いただくため、システムのアップグレードおよびデータベースの移行作業を実施しております。作業中は一時的にアクセスできません。",
-        statusLabel: "ステータス",
-        statusValue: "データベース移行作業中",
-        statusNote: "すべての居住者データおよび設定は安全に保持されています。作業が完了次第、速やかにサービスを再開いたします。",
-        checkBtn: "再確認",
-        checking: "確認中...",
-        coachSectionTitle: "スチューデントコーチ",
-        coachName: "Jeroen Guns",
-        coachRole: "レジデンス＆スチューデントコーチ",
-        coachCallBtn: "通話",
-        coachNote: "緊急の問い合わせ、設備の不具合、現地での至急のサポート用。",
-        emSectionTitle: "緊急連絡先（直接発信）",
-        emAmbulance: "救急車・消防",
-        emPolice: "警察",
-        emDoctor: "当番医",
-        emSupport: "相談・サポート窓口",
-        resSectionTitle: "レジデンス情報",
-        resAddressLabel: "所在地",
-        resAddress: "Frank van Ackerpromenade 8, 8000 Bruges",
-        resQuietLabel: "静粛時間",
-        resQuiet: "<strong>22:00 から 08:00</strong> までは夜間静粛時間です。他の居住者や近隣住民へのご配慮をお願いいたします。",
-        restoredToast: "接続が回復しました！ページを再読み込みしています..."
+        metaDesc: "b/here は現在メンテナンス中です。",
+        title: "ただいまメンテナンス中です",
+        desc: "現在、b/here のシステムメンテナンスを実施しております。作業終了までしばらくお待ちください。",
+        reload: "再試行"
       },
       ru: {
         pageTitle: "Техобслуживание • b/here",
-        metaDesc: "Платформа b/here временно находится на техобслуживании из-за миграции системы.",
-        badge: "Техобслуживание",
-        heroTitle: "Временное техобслуживание и миграция",
-        heroDesc: "В настоящее время мы проводим плановую модернизацию системы и миграцию базы данных для повышения надежности b/here. Платформа временно недоступна.",
-        statusLabel: "Статус",
-        statusValue: "Выполняется миграция базы данных",
-        statusNote: "Все данные и настройки жильцов находятся в полной безопасности. Как только миграция завершится, b/here сразу же станет доступен.",
-        checkBtn: "Проверить снова",
-        checking: "Проверка...",
-        coachSectionTitle: "Студенческий куратор",
-        coachName: "Jeroen Guns",
-        coachRole: "Куратор резиденции и студентов",
-        coachCallBtn: "Позвонить",
-        coachNote: "Для срочных вопросов, неисправностей или немедленной помощи на месте.",
-        emSectionTitle: "Экстренные службы (Прямой звонок)",
-        emAmbulance: "Скорая помощь и пожарные",
-        emPolice: "Полиция",
-        emDoctor: "Дежурный врач",
-        emSupport: "Служба поддержки",
-        resSectionTitle: "Информация о резиденции",
-        resAddressLabel: "Адрес резиденции",
-        resAddress: "Frank van Ackerpromenade 8, 8000 Bruges",
-        resQuietLabel: "Часы тишины",
-        resQuiet: "С <strong>22:00 до 08:00</strong> действуют ночные часы тишины. Пожалуйста, уважайте покой соседей.",
-        restoredToast: "Связь восстановлена! Перезагрузка страницы..."
+        metaDesc: "Платформа b/here временно находится на техобслуживании.",
+        title: "Мы скоро вернемся",
+        desc: "В настоящее время мы проводим плановое техническое обслуживание b/here. Платформа скоро снова будет доступна.",
+        reload: "Повторить"
       },
       zh: {
         pageTitle: "维护中 • b/here",
-        metaDesc: "b/here 正在进行计划内系统迁移维护。",
-        badge: "系统维护中",
-        heroTitle: "系统维护与数据迁移",
-        heroDesc: "我们正在进行计划内的系统升级与数据库迁移，以提升 b/here 的性能与稳定性。维护期间平台暂时无法访问。",
-        statusLabel: "状态",
-        statusValue: "数据库迁移正在进行",
-        statusNote: "所有住户数据与设置均已安全保留。迁移完成后，平台将立即恢复正常访问。",
-        checkBtn: "重新检查",
-        checking: "检查中...",
-        coachSectionTitle: "学生导师 (Coach)",
-        coachName: "Jeroen Guns",
-        coachRole: "公寓管理与学生导师",
-        coachCallBtn: "拨打",
-        coachNote: "用于紧急事务、设施故障或现场即时协助。",
-        emSectionTitle: "紧急联系电话 (直接呼叫)",
-        emAmbulance: "救护车与消防",
-        emPolice: "警察",
-        emDoctor: "值班医生",
-        emSupport: "心理咨询热线",
-        resSectionTitle: "公寓信息",
-        resAddressLabel: "公寓地址",
-        resAddress: "Frank van Ackerpromenade 8, 8000 Bruges",
-        resQuietLabel: "静音时段",
-        resQuiet: "晚间 <strong>22:00 至次日 08:00</strong> 为夜间安静时段，请尊重同住人员与邻里。",
-        restoredToast: "连接已恢复！正在重新加载页面..."
+        metaDesc: "b/here 正在进行系统维护。",
+        title: "系统维护中，很快回来",
+        desc: "我们正在进行计划内的系统维护与优化，b/here 稍后即可恢复正常访问。",
+        reload: "重新加载"
       }
     };
 
-    let currentLang = 'en';
-
     function detectLanguage() {
-      // 1. Saved choice
       try {
         const saved = localStorage.getItem('bhere_lang');
         if (saved && translations[saved]) return saved;
       } catch (e) {}
 
-      // 2. Browser languages list
-      const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
+      const navLangs = navigator.languages || [navigator.language || ''];
       for (let l of navLangs) {
         if (!l) continue;
         const code = l.toLowerCase().split('-')[0];
         if (translations[code]) return code;
       }
-
       return 'en';
     }
 
     function setLanguage(lang) {
       if (!translations[lang]) lang = 'en';
-      currentLang = lang;
-
       try {
         localStorage.setItem('bhere_lang', lang);
       } catch (e) {}
@@ -935,86 +298,34 @@
       document.getElementById('metaTitle').textContent = t.pageTitle;
       document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
 
-      document.getElementById('badgeText').textContent = t.badge;
-      document.getElementById('heroTitle').innerHTML = t.heroTitle;
-      document.getElementById('heroDesc').textContent = t.heroDesc;
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('desc').textContent = t.desc;
+      document.getElementById('reloadText').textContent = t.reload;
 
-      document.getElementById('statusLabel').textContent = t.statusLabel;
-      document.getElementById('statusValue').textContent = t.statusValue;
-      document.getElementById('statusNote').textContent = t.statusNote;
-
-      document.getElementById('retryText').textContent = t.checkBtn;
-
-      document.getElementById('coachSectionTitle').textContent = t.coachSectionTitle;
-      document.getElementById('coachName').textContent = t.coachName;
-      document.getElementById('coachRole').textContent = t.coachRole;
-      document.getElementById('coachCallBtn').textContent = t.coachCallBtn;
-      document.getElementById('coachNote').textContent = t.coachNote;
-
-      document.getElementById('emSectionTitle').textContent = t.emSectionTitle;
-      document.getElementById('emAmbulance').textContent = t.emAmbulance;
-      document.getElementById('emPolice').textContent = t.emPolice;
-      document.getElementById('emDoctor').textContent = t.emDoctor;
-      document.getElementById('emSupport').textContent = t.emSupport;
-
-      document.getElementById('resSectionTitle').textContent = t.resSectionTitle;
-      document.getElementById('resAddressLabel').textContent = t.resAddressLabel;
-      document.getElementById('resAddress').textContent = t.resAddress;
-      document.getElementById('resQuietLabel').textContent = t.resQuietLabel;
-      document.getElementById('resQuiet').innerHTML = t.resQuiet;
-
-      document.getElementById('reconnectingToast').textContent = t.restoredToast;
-
-      // Update active button state
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        if (btn.getAttribute('data-lang') === lang) {
-          btn.classList.add('active');
+      document.querySelectorAll('.lang-links a').forEach(a => {
+        if (a.getAttribute('data-lang') === lang) {
+          a.classList.add('active');
         } else {
-          btn.classList.remove('active');
+          a.classList.remove('active');
         }
       });
     }
 
-    function checkStatus() {
-      const btn = document.getElementById('retryButton');
-      const text = document.getElementById('retryText');
-      const icon = document.getElementById('retryIcon');
-      const t = translations[currentLang] || translations.en;
-
-      if (btn && text && icon) {
-        text.textContent = t.checking;
-        icon.classList.add('spinning');
-        btn.style.opacity = '0.75';
-        btn.disabled = true;
-      }
-
-      // Hard reload from server with cache-busting
+    function reloadPage() {
+      const icon = document.getElementById('reloadIcon');
+      if (icon) icon.classList.add('spinning');
       setTimeout(() => {
         const url = new URL(window.location.href);
         url.searchParams.set('_t', Date.now());
         window.location.href = url.toString();
-      }, 700);
+      }, 500);
     }
 
-    // Auto-check periodically in background
-    setInterval(() => {
-      fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
-        .then(res => {
-          // If server returns a redirection or specific header, or changes status
-        })
-        .catch(() => {});
-    }, 25000);
-
-    // Online event handler
+    // Auto-reload when browser goes online
     window.addEventListener('online', () => {
-      const toast = document.getElementById('reconnectingToast');
-      if (toast) toast.style.display = 'block';
-      setTimeout(() => {
-        window.location.reload();
-      }, 900);
+      window.location.reload();
     });
 
-    // Initialize detected language
     setLanguage(detectLanguage());
   </script>
 </body>
